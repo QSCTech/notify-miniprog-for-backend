@@ -129,8 +129,8 @@ Page({
         },
         function () {}, {
           choice: nowChooseType - 1,
-          page_size: 10,
-          page_num: noticeArray.length/10 + 1
+          page_size: that.data.pageSize,
+          page_num: noticeArray.length/that.data.pageSize + 1
         });
     })
     request.then(function () {
@@ -274,11 +274,13 @@ Page({
         appendixNoticeArray: appendixListSample,
         notReadNoticeArray: notReadListSample,
         collectedNoticeArray: collectedListSample,
-        refreshOn: false
+        refreshOn: false,
+        finale: false
       });
       console.log(that.data.appendixNoticeArray.length + " " + appendixListSample.length);
     }, function(error) {})
   },
+
   getMoreNotice() {
     const that = this;
     const nowChooseType = this.data.nowChooseType;
@@ -306,6 +308,7 @@ Page({
         list = collectedListSample;
         break;
     }
+    console.log(listSample === list);
     
     const http = new HTTP();
     const request = new Promise(function (resolve) {
