@@ -1,0 +1,65 @@
+/* pages/manageSubscribe/index.wxss */
+.header {
+  width: 90%;
+  margin: 20rpx auto 0;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0rpx;
+  padding: 40rpx;
+  background-color: white;
+  width: 750rpx;
+  border-style: solid;
+  border-color: #dddddd;
+  border-width: 5rpx 0rpx 0rpx 0rpx;
+}
+
+.confirm {
+  width: 670rpx;
+  font-weight: bold !important;
+}
+
+.nowNum {
+  font-size: 20rpx;
+}
+
+.box {
+  border-radius: 20rpx;
+  margin: 30rpx 30rpx 0rpx 30rpx;
+  width: 630rpx;
+  background-color: white;
+  padding-top: 20rpx;
+  padding-left: 30rpx;
+  padding-right: 30rpx;
+  padding-bottom: 10rpx;
+}
+
+.list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 630rpx;
+  margin-top: 20rpx;
+}
+
+.websites {
+  margin: 10rpx 10rpx 0rpx 0rpx;
+  width: max-content;
+}
+
+.title {
+  font-size: 30rpx;
+}
+
+.manageBut {
+  margin: 0rpx 0rpx 0rpx 500rpx;
+  width: 130rpx;
+}
+.vantag-class {
+  padding: 4rpx 30rpx !important;
+  margin: 8rpx 4rpx !important;
+  /* color: #4d4d4d !important; */
+  border: var(--button-border-width, 2rpx) solid
+    var(--button-default-border-color, #ebedf0) !important;
+}

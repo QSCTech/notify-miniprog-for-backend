@@ -1,0 +1,119 @@
+<!--pages/notifyDetails/index.wxml-->
+<view style="background-image: url('/images/typeDetail.png')">
+  <title-bar title="" titleStyle=""></title-bar>
+  <view style="height: 10rpx"></view>
+</view>
+<scroll-view scroll-y style="height:{{scrollViewHeight}}px">
+  <view class="detailContainer" bindtap="onclickText">
+    <view class="detailTitle">{{title}}</view>
+    <view class="detailDate">{{date}} 访问次数: {{visits}}</view>
+    <view class="detailInfo">
+      <view class="categoryAndSource">
+        <view wx:if="{{important}}" class="categoryOrSource serious"
+          >{{category}}</view
+        >
+        <view wx:else class="categoryOrSource">{{category}}</view>
+        <view class="categoryOrSource">{{source}}</view>
+      </view>
+      <i class="iconfont icon-attachment attachment"></i>
+    </view>
+    <rich-text nodes="{{text}}" class="detailText"></rich-text>
+    <rich-text
+      wx:if="{{hasAttachment}}"
+      class="detailAttachment"
+      nodes="{{attachment}}"
+    ></rich-text>
+    <view class="detailOrigin">来源：{{origin}}</view>
+  </view>
+  <view
+    class="reportBtn"
+    bindtap="onclickReport"
+    style="right: {{reportBtnStatus ? '4%' : '-48rpx'}}"
+  >
+    <i
+      class="iconfont icon-report reportIcon"
+      style="font-size: {{reportBtnStatus ? '60rpx' : '32rpx'}}; margin-left: {{reportBtnStatus ? '19rpx' : '8rpx'}}"
+    ></i>
+  </view>
+</scroll-view>
+<view
+  active="{{ active }}"
+  bind:change="onToolBarChange"
+  style="bottom: {{safeAreaHeight}}px"
+  class="toolBar"
+>
+  <view
+    class="iconfont icon-DDL DDLBtn verticalCentered"
+    bindtap="onChangeDate"
+  ></view>
+  <view
+    wx:if="star"
+    class="iconfont icon-star_filled toolBtn starred verticalCentered"
+  ></view>
+  <view wx:else class="iconfont icon-star toolBtn verticalCentered"></view>
+  <view class="iconfont icon-share toolBtn verticalCentered"></view>
+</view>
+
+<van-popup
+  show="{{ showDate }}"
+  round
+  position="bottom"
+  custom-style=""
+  bind:close="onChangeDate"
+>
+  <view
+    style="width: 90%;min-height:700rpx; overflow:hidden;margin: 50rpx auto 20rpx; {{showTime?'display:none':''}}"
+  >
+    <calendar
+      id="calendar"
+      config="{{calendarConfig}}"
+      bind:onSwipe="onSwipe"
+      bind:whenChangeWeek="whenChangeWeek"
+      bind:whenChangeMonth="whenChangeMonth"
+      bind:takeoverTap="takeoverTap"
+      bind:afterTapDate="afterTapDate"
+      bind:afterCalendarRender="afterCalendarRender"
+    ></calendar>
+    <view style="display: flex; justify-content: flex-end; margin-top: 30rpx">
+      <view
+        style="  width: 80rpx;padding: 10rpx 30rpx; background: #ececec; border-radius: 12rpx; text-align:center;"
+        bindtap="onChangeTIme"
+      >
+        {{ddlTime}}
+      </view>
+    </view>
+  </view>
+  <van-picker
+    custom-class="picker"
+    id="picker"
+    columns="{{ pickerData }}"
+    bind:change="onSetDate"
+    wx:if="{{showTime}}"
+  />
+
+  <view class="button-wrp">
+    <van-button
+      round
+      type="info"
+      custom-class="cancel-button"
+      bindtap="onClickCancel"
+      >取消</van-button
+    >
+    <van-button
+      wx:if="{{!showTime}}"
+      round
+      type="info"
+      custom-class="confirm-button"
+      bindtap="onClickConfirm"
+      >确定</van-button
+    >
+    <van-button
+      wx:if="{{showTime}}"
+      round
+      type="info"
+      custom-class="confirm-button"
+      bindtap="onClickConfirm"
+      >设定时间</van-button
+    >
+  </view>
+</van-popup>

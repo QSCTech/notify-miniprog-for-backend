@@ -1,0 +1,73 @@
+/* components/SubscribeIndex/SubscribeIndex.wxss */
+.background {
+  background-color: #dddddd;
+  padding: 30rpx 0rpx 0rpx 0rpx;
+}
+.search-component {
+  width: 94%;
+  margin: 20rpx auto;
+  padding-bottom: 20rpx;
+}
+/* 每个网站item未选中时的样式 */
+.cell {
+  border-radius: 30rpx !important;
+  margin: 45rpx !important;
+  width: 660rpx !important;
+}
+
+/* 每个网站item被选中时的样式 */
+.cellChosen {
+  background-color: rgba(0, 165, 227, 1) !important;
+  border-radius: 30rpx !important;
+  margin: 45rpx !important;
+  width: 660rpx !important;
+}
+
+.chooseIcon {
+  color: #ffffff !important;
+  font-size: 40rpx !important;
+  padding-right: 20rpx !important;
+  padding-top: 20rpx !important;
+}
+
+.titleChosen {
+  color: white !important;
+}
+
+.labelChosen {
+  color: white !important;
+}
+
+.filter-container {
+  width: 228rpx;
+  height: 0rpx;
+  border-radius: 0 0 26rpx 26rpx;
+  position: absolute;
+  top: var(--top--);
+  right: 16rpx;
+  z-index: 99;
+  display: flex;
+  overflow: hidden;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  background: white;
+  transition-duration: 350ms;
+}
+.filter-container .button {
+  border-radius: 30rpx;
+  width: 190rpx;
+  height: 60rpx;
+  margin-bottom: 12rpx;
+  font-size: 28rpx;
+  color: white;
+}
+.filter-list-show {
+  height: 170rpx;
+  /* animation: slide 500ms alternate both; */
+}
+.filter-list-hide {
+  height: 0rpx;
+  /* display: none !important; */
+  /* animation: slide 500ms alternate reverse both; */
+}

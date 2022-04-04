@@ -1,0 +1,90 @@
+/**index.wxss**/
+.number {
+  font-size: 30rpx;
+  color: grey;
+  display: flex;
+}
+.name {
+  display: flex;
+  flex-direction: row;
+}
+.container1 {
+  height: 70%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  padding: 40rpx 0;
+  box-sizing: border-box;
+  position: relative;
+}
+.box {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  background-color: grey;
+  border-radius: 20rpx;
+  margin: 20rpx, 40rpx, 20rpx, 40rpx;
+  font-size: 20rpx;
+  padding: 6rpx;
+  position: relative;
+}
+.myddl {
+  padding: 20rpx 20rpx;
+  border-radius: 10rpx;
+  font-weight: 400;
+  text-align: center;
+  line-height: normal;
+}
+.typeIcon {
+  height: 120rpx;
+  width: 120rpx;
+  border-radius: 60rpx;
+  font-size: 60rpx;
+  text-align: center;
+  line-height: 115rpx;
+  margin-bottom: 10rpx;
+}
+.info {
+  position: relative;
+}
+.filterBox {
+  display: flex;
+  height: 80rpx;
+  width: 50%;
+  flex: 1;
+  margin: 0 auto;
+  position: relative;
+  flex-direction: row;
+  /* padding: 2rpx 8rpx; */
+  border-radius: 20rpx;
+  background-color: #ececec;
+  justify-content: space-around;
+  align-items: center;
+}
+.filterBox-item {
+  width: 44%;
+  flex: 1;
+  font-size: 30rpx;
+  font-weight: bold;
+  height: 80%;
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10rpx;
+  /* margin: 0 4%; */
+  font-size: 26rpx;
+  z-index: 10;
+  transition: ease 200ms;
+  /* background-color: blueviolet; */
+}
+.filter-slider {
+  width: 44%;
+  height: 76%;
+  position: absolute;
+  border-radius: 18rpx;
+  background-color: white;
+  z-index: 9;
+  transition: ease 200ms;
+}

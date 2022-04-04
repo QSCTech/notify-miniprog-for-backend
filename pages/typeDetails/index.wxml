@@ -1,0 +1,53 @@
+<!--pages/typeDetails/index.wxml-->
+<view  style="background-image: url('/images/typeDetail.png')">
+  <title-bar title="{{type}}" id="titleBar">
+    <view class="iconfont icon-filter filterIcon" bindtap="listWebsites"></view>
+  </title-bar>
+  <view style="height:10rpx;"></view>
+</view>
+<van-overlay show="{{ showCollapse }}" bind:click="onClickHide">
+  <view
+  class="list"
+  id="header"
+  style="max-height: {{showCollapse ? 1500 : 0}}rpx; opacity: {{showCollapse ? 1 : 0.5}}; z-index: {{showCollapse ? 99 : -1}}"
+>
+  <view
+    wx:for="{{websites}}"
+    wx:for-item="website"
+    wx:for-index="index"
+    wx:key="title"
+  >
+    <view
+      wx:if="{{website.isChosen}}"
+      class="cell cell-active"
+      bindtap="changeChosen"
+      id="{{index}}"
+    >
+      {{website.title}}
+    </view>
+    <view wx:else class="cell" bindtap="changeChosen" id="{{index}}">
+      {{website.title}}
+    </view>
+  </view>
+</view>
+</van-overlay>
+
+
+<scroll-view scroll-y class="noticeList" style="height:{{scrollViewHeight}}px;transition: 300ms">
+  <view style="padding-bottom: 30rpx">
+    <Notice
+      wx:for="{{noticeArray}}"
+      wx:key="id"
+      pid="{{item.pid}}"
+      title="{{item.title}}"
+      category="{{item.category}}"
+      source="{{item.source}}"
+      attachment="{{item.attachment}}"
+      star="{{item.star}}"
+      stickTop="{{false}}"
+      redDot="{{false}}"
+      rightCellWidth="{{0}}"
+    />
+  </view>
+  <view style="height: 20%"></view>
+</scroll-view>

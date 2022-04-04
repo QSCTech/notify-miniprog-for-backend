@@ -1,0 +1,33 @@
+/* custom-tab-bar/index.wxss */
+
+.icon-item-noselect {
+  /* margin-top: 4rpx; */
+  font-size: 48rpx !important;
+  color: #707070;
+}
+.icon-item-select {
+  /* margin-top: 4rpx; */
+  font-size: 48rpx !important;
+  color: #00a5e3;
+}
+.noticeReddot {
+  width: 32rpx;
+  height: 32rpx;
+  min-width: 32rpx;
+  min-height: 32rpx;
+  background-color: #ff2349;
+  border-radius: 50%;
+  position: absolute;
+  top: -10rpx;
+  left: 26rpx;
+  color: white;
+  text-align: center;
+  line-height: 32rpx;
+  font-size: 22rpx;
+}
+.tab-bar-item-style {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}

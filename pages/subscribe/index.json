@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "SubscribeIndex": "/components/SubscribeIndex/index",
+    "TitleBar": "/components/TitleBar/index",
+    "search": "/components/Search/index",
+    "van-button": "@vant/weapp/button/index"
+  }
+}

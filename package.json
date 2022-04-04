@@ -1,0 +1,26 @@
+{
+  "name": "notify-miniprogram",
+  "version": "1.0.0",
+  "description": "Notify 微信小程序",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "docs": "jsdoc -c jsdoc.json",
+    "format": "prettier --write  **/*.{wxml,js,wxss,wxs,json}"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@git.zjuqsc.com:notify/notify-miniprogram.git"
+  },
+  "author": "",
+  "devDependencies": {
+    "docdash": "^1.2.0",
+    "jsdoc": "^3.6.6",
+    "prettier": "^2.3.0"
+  },
+  "dependencies": {
+    "@vant/weapp": "^1.6.8"
+  }
+}

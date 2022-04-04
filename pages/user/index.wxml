@@ -1,0 +1,48 @@
+<!--index.wxml-->
+
+<view  style="background-image: url('/images/personnotify.png'); position:fixed;">
+  <title-bar arrow="{{false}}" title="个人中心" titleStyle=""></title-bar>
+
+<view class="container1"  style="position: relative; left: -2rpx; top: 0rpx"> 
+  <view class="iconfont icon-notice typeIcon" style="background-color:#00a5e3" ></view>
+<view class="info">
+ <view class="name" style="position: relative; left: -100rpx; top: 0rpx;color:rgb(77, 77, 77);font-weight:bold;font-size:34rpx;">王进学  </view> 
+ <view class="number" style="position: relative; left: -100rpx; top: 2rpx;color: #969696;    font-weight: 700;font-size:26rpx;">319010000</view>
+</view>
+<view class="iconfont icon-settings"  bindtap="toSettings" style="font-size:20px;color: grey; display: block; box-sizing: border-box; left: 0rpx; top: 0rpx"></view>
+ </view>
+
+<view class="filterBox">
+      <view class="filter-slider" style="{{!isChoiceFilter ? 'left: 3%' : 'left: 50%'}}"></view>
+      <view class="filterBox-item" style="left: 3%; color: {{isChoiceFilter ? '#c9c9c9' : '#00A5E3'}}" data-sid="0" bindtap="onclickFilter">
+        我的DDL
+      </view> 
+      <view class="filterBox-item" style="right: 3%; color: {{isChoiceFilter ? '#00A5E3' : '#c9c9c9'}}" data-sid="1" bindtap="onclickFilter">
+      我的收藏
+      </view>
+
+</view>
+
+<view
+    style="width: 80%; overflow:hidden;margin: 20rpx auto 20rpx; transition: ease 500ms;max-height:{{isExpand?'700rpx':'300rpx'}};"
+  >
+    <calendar
+      id="calendar"
+      config="{{calendarConfig}}"
+      bind:onSwipe="onSwipe"
+      bind:whenChangeWeek="whenChangeWeek"
+      bind:whenChangeMonth="whenChangeMonth"
+      bind:takeoverTap="takeoverTap"
+      bind:afterTapDate="afterTapDate"
+      bind:afterCalendarRender="afterCalendarRender"
+    ></calendar>
+    <view wx:if="{{!isExpand}}" style="margin:10rpx auto;display:flex;justify-content:center;" bindtap="onClickArrow">
+      <i class="iconfont icon-down" style="color:gray;font-size:24rpx;">
+  </i>
+    </view>
+    <view wx:else style="margin:10rpx auto;display:flex;justify-content:center;" bindtap="onClickArrow">
+      <i class="iconfont icon-up" style="color:gray;font-size:24rpx;">
+  </i>
+    </view>
+  </view>
+</view>

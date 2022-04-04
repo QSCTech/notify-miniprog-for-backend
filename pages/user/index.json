@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "Notice": "../../components/Notice/index",
+    "title-bar": "../../components/TitleBar/index",
+    "van-calendar": "@vant/weapp/calendar/index",
+    "van-image": "@vant/weapp/image/index",
+    "van-icon": "@vant/weapp/icon/index",
+    "calendar": "../../components/Calendar2/index"
+  }
+}

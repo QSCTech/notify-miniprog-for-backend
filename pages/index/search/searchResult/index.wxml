@@ -1,0 +1,51 @@
+<!--pages/index/search/searchResult/index.wxml-->
+<view style="background-image: url('/images/subscribe.png')">
+  <title-bar arrow="{{true}}" title="搜索结果" titleStyle=""></title-bar>
+  <view style="width: 94%; margin: 6px auto 0"
+    ><search
+      bind:clickfilter="onClickFilter"
+      bind:search0="onSearch"
+      componentType="2"
+      isChoiceFilter="{{choiceFilter}}"
+      type2Value="{{typeValue}}"
+    ></search
+  ></view>
+  <view style="height: 12px"></view>
+</view>
+
+<!-- <view
+  class="filter-container {{choiceFilter?'filter-list-show':'filter-list-hide'}}"
+  style="--top--:{{filterToTop}}"
+>
+  <view
+    wx:for="{{filterTypeData}}"
+    wx:key="index"
+    data-index="{{index}}"
+    class="filter-item"
+  >
+    <van-button
+      bind:click="onChangeType"
+      data-index="{{item.index}}"
+      color="{{item.index===nowChooseType?item.color:'#C9C9C9'}}"
+      custom-class="button"
+      >{{item.text}}</van-button
+    >
+  </view>
+</view> -->
+<scroll-view scroll-y class="noticeList" style="height:{{canUseHeight}}px">
+  <Notice
+    wx:for="{{noticeArray}}"
+    wx:key="id"
+    data-nid="{{item.id}}"
+    pid="{{item.pid}}"
+    title="{{item.title}}"
+    category="{{item.category}}"
+    source="{{item.source}}"
+    attachment="{{item.attachment}}"
+    star="{{item.star}}"
+    stickTop="{{false}}"
+    redDot="{{false}}"
+    rightCellWidth="{{0}}"
+  />
+  <view class="tab-bar-height"> </view>
+</scroll-view>

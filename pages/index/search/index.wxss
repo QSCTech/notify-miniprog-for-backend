@@ -1,0 +1,95 @@
+/* pages/index/search/index.wxss */
+.box1 {
+  padding: 30rpx 40rpx;
+  margin: 20rpx 40rpx;
+  background: white;
+  border-radius: 20rpx;
+  min-height: 200rpx;
+  overflow: hidden;
+  position: relative;
+}
+.box2 {
+  padding: 30rpx 40rpx;
+  margin: 20rpx 40rpx;
+  background: white;
+  border-radius: 30rpx;
+  min-height: 300rpx;
+}
+.background {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  background-color: #dddddd;
+}
+
+.title {
+  height: 60rpx;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  position: relative;
+}
+.history-title {
+  font-weight: bold;
+  font-size: 30rpx;
+  color: rgb(77, 77, 77);
+}
+.delete-icon {
+  margin-left: auto;
+}
+.deleteBut {
+  padding: 0 10rpx;
+  width: 130rpx;
+  border: none !important;
+  font-size: 26rpx;
+  color: #333333;
+}
+.finishBut {
+  padding: 0 10rpx;
+  border: none !important;
+  font-size: 28rpx;
+}
+.history-search-righttext {
+  position: relative;
+  margin-left: auto;
+}
+
+.list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  transition: max-height 1s;
+}
+.list.show {
+  max-height: 800rpx;
+}
+.list.hide {
+  max-height: 200rpx;
+}
+.websites {
+  margin: 10rpx 10rpx 10rpx 0rpx;
+  padding: 20rpx 30rpx !important;
+  width: max-content;
+  height: 40rpx !important;
+  font-size: 24rpx !important;
+  border: 4rpx solid #ebedf0 !important;
+}
+.tag-choosedelete {
+  background: #e3e3e3 !important;
+}
+.hot-list {
+  display: flex;
+  align-content: flex-start;
+  flex-flow: row wrap;
+  width: 100%;
+  margin-top: 10rpx;
+  justify-content: space-between;
+}
+.focus-hot-item {
+  width: 48%;
+  margin-top: 10rpx;
+  font-size: 24rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  color: #333333;
+}

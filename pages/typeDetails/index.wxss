@@ -1,0 +1,36 @@
+/* pages/typeDetails/index.wxss */
+.noticeList {
+  background-color: #dddddd;
+}
+
+.filterIcon {
+  margin-left: 260rpx;
+  color: white;
+  font-size: 40rpx;
+}
+
+.list {
+  position: relative;
+  background-color: #dddddd;
+  width: 750rpx;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  overflow: hidden;
+  transition: all 400ms;
+  border-radius: 0rpx 0rpx 20rpx 20rpx;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.cell {
+  width: 750rpx;
+  text-align: left;
+  padding: 10rpx 0rpx 10rpx 80rpx;
+  font-size: 26rpx;
+}
+.cell-active {
+  background-color: white;
+}

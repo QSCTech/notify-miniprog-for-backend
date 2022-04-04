@@ -1,0 +1,42 @@
+{
+  "pages": [
+    "pages/login/index",
+    "pages/index/index",
+    "pages/subscribe/index",
+    "pages/infoBase/index",
+    "pages/user/index",
+    "pages/user/settings/index",
+    "pages/notifyDetails/index",
+    "pages/index/search/index",
+    "pages/typeDetails/index",
+    "pages/manageSubscribe/index",
+    "pages/login/contract/index",
+    "pages/index/search/searchResult/index"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationStyle": "custom",
+    "navigationBarBackgroundColor": "#4680EF",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "custom": true,
+    "list": [{
+        "pagePath": "pages/index/index",
+        "text": "通知"
+      },
+      {
+        "pagePath": "pages/infoBase/index",
+        "text": "信息库"
+      },
+      {
+        "pagePath": "pages/user/index",
+        "text": "个人"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json",
+  "usingComponents": {
+    "customtabbar": "/custom-tab-bar/index"
+  }
+}

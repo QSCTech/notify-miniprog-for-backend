@@ -1,0 +1,13 @@
+/* pages/login/contract/index.wxss */
+.contractContainer {
+  width: 100%;
+}
+.contractTextArea {
+  margin: 28rpx 40rpx;
+}
+.contractText {
+  color: #4d4d4d;
+  font-size: 24rpx;
+  /* word-break: break-all; */
+  word-wrap: break-word;
+}

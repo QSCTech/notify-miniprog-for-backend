@@ -1,0 +1,18 @@
+{
+  "source": {
+    "include": [
+      "./components",
+      "./custom-tab-bar",
+      "./model",
+      "./pages",
+      "./utils"
+    ]
+  },
+  "opts": {
+    "template": "node_modules/docdash",
+    "encoding": "utf8",
+    "destination": "./docs/jsdoc",
+    "recurse": true,
+    "verbose": false
+  }
+}

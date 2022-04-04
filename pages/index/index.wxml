@@ -1,0 +1,149 @@
+<!--index.wxml-->
+<view style="background-image: url('/images/notifyandinfobase.png')">
+  <title-bar arrow="{{false}}" title="notify" titleStyle=""></title-bar>
+  <view style="width: 94%; margin: 10rpx auto 0"
+    ><search
+      bind:clickfilter="onClickFilter"
+      componentType="0"
+      isChoiceFilter="{{choiceFilter}}"
+    ></search
+  ></view>
+  <view style="height: 10px"></view>
+  <view
+    class="filter-container {{choiceFilter?'filter-list-show':'filter-list-hide'}}"
+    style="--top--:{{filterToTop}}"
+  >
+    <view
+      wx:for="{{filterTypeData}}"
+      wx:key="index"
+      data-index="{{index}}"
+      class="filter-item"
+    >
+      <van-button
+        bind:click="onChangeType"
+        data-index="{{item.index}}"
+        color="{{item.index===nowChooseType?item.color:'#C9C9C9'}}"
+        custom-class="button"
+        >{{item.text}}</van-button
+      >
+    </view>
+  </view>
+</view>
+
+<!-- <view wx:if="{{topNoticeArray}}" class="noticeList">
+</view> -->
+<scroll-view scroll-y class="noticeList" style="height:{{canUseHeight}}px" enable-back-to-top refresher-enabled bindrefresherrefresh="refreshList" refresher-triggered="{{refreshOn}}" scroll-top="{{scrollTop}}" bindscrolltolower="getMoreNotice" lower-threshold="{{100}}">
+
+  <view wx:if="{{nowChooseType == 1}}">
+    <Notice
+      wx:for="{{topNoticeArray}}"
+      wx:key="id"
+      data-nid="{{item.id}}"
+      pid="{{item.pid}}"
+      title="{{item.title}}"
+      category="{{item.category}}"
+      source="{{item.source}}"
+      attachment="{{item.attachment}}"
+      star="{{item.star}}"
+      stickTop="{{item.stickTop}}"
+      redDot="{{item.redDot}}"
+      rightCellWidth="{{rightCellWidth}}"
+    />
+    <view class="foldArea" style="height:{{foldAreaHeight}}rpx" wx:if="{{!foldingTopArray}}">
+      <Notice
+        wx:for="{{topFoldedNoticeArray}}"
+        wx:key="id"
+        data-nid="{{item.id}}"
+        pid="{{item.pid}}"
+        title="{{item.title}}"
+        category="{{item.category}}"
+        source="{{item.source}}"
+        attachment="{{item.attachment}}"
+        star="{{item.star}}"
+        stickTop="{{item.stickTop}}"
+        redDot="{{item.redDot}}"
+        rightCellWidth="{{rightCellWidth}}"
+      />
+    </view>
+    <view
+      wx:if="{{topFoldedNoticeNumber > 0}}"
+      class="foldingButton"
+      bindtap="toggleFoldList"
+    >
+      <van-icon
+        wx:if="{{foldingTopArray}}"
+        name="arrow-down"
+        style="color: white"
+      />
+      <van-icon wx:else name="arrow-up" style="color: white" />
+    </view>
+    <Notice
+      wx:for="{{noticeArray}}"
+      wx:key="id"
+      data-nid="{{item.id}}"
+      pid="{{item.pid}}"
+      title="{{item.title}}"
+      category="{{item.category}}"
+      source="{{item.source}}"
+      attachment="{{item.attachment}}"
+      star="{{item.star}}"
+      stickTop="{{item.stickTop}}"
+      redDot="{{item.redDot}}"
+      rightCellWidth="{{rightCellWidth}}"
+    />
+  </view>
+  <view wx:if="{{nowChooseType == 2}}">
+    <Notice
+      wx:for="{{notReadNoticeArray}}"
+      wx:key="id"
+      data-nid="{{item.id}}"
+      pid="{{item.pid}}"
+      title="{{item.title}}"
+      category="{{item.category}}"
+      source="{{item.source}}"
+      attachment="{{item.attachment}}"
+      star="{{item.star}}"
+      stickTop="{{item.stickTop}}"
+      redDot="{{item.redDot}}"
+      rightCellWidth="{{rightCellWidth}}"
+    />
+  </view>
+  <view wx:if="{{nowChooseType == 3}}">
+    <Notice
+      wx:for="{{appendixNoticeArray}}"
+      wx:key="id"
+      data-nid="{{item.id}}"
+      pid="{{item.pid}}"
+      title="{{item.title}}"
+      category="{{item.category}}"
+      source="{{item.source}}"
+      attachment="{{item.attachment}}"
+      star="{{item.star}}"
+      stickTop="{{item.stickTop}}"
+      redDot="{{item.redDot}}"
+      rightCellWidth="{{rightCellWidth}}"
+    />
+  </view>
+  <view wx:if="{{nowChooseType == 4}}">
+    <Notice
+      wx:for="{{collectedNoticeArray}}"
+      wx:key="id"
+      data-nid="{{item.id}}"
+      pid="{{item.pid}}"
+      title="{{item.title}}"
+      category="{{item.category}}"
+      source="{{item.source}}"
+      attachment="{{item.attachment}}"
+      star="{{item.star}}"
+      stickTop="{{item.stickTop}}"
+      redDot="{{item.redDot}}"
+      rightCellWidth="{{rightCellWidth}}"
+    />
+  </view>
+  <view style="height: 6%; width: 100%"> </view>
+  <view wx:if="{{finale}}" class="bottomMessage">已经到底啦~</view>
+  <view wx:elif="{{loadingMore}}" class="bottomMessage"><van-loading type="spinner" size="48rpx" color="#444444"/></view>
+  <view wx:else class="bottomMessage">上拉加载</view>
+  <view style="height: 4%; width: 100%"> </view>
+  <!-- <view class="tab-bar-height"> </view> -->
+</scroll-view>

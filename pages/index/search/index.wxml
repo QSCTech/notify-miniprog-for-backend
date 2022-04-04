@@ -1,0 +1,96 @@
+<!--pages/index/search/index.wxml-->
+<view class="background">
+  <view style="background-image: url('/images/subscribe.png')">
+    <title-bar arrow="{{true}}" title="检索消息" titleStyle=""></title-bar>
+    <view style="width: 92%; margin: 10rpx auto"
+      ><search bind:search="onClickSearch" componentType="1"></search
+    ></view>
+    <view style="height: 10rpx"></view>
+  </view>
+
+  <view>
+    <view class="box1">
+      <view class="title">
+        <i
+          class="iconfont icon-latest"
+          style="font-size: 40rpx; color: #ff9a18"
+        ></i>
+        <view class="history-title" style="margin-left: 10rpx">历史搜索</view>
+
+        <view wx:if="{{historySearch.length}}" class="history-search-righttext">
+          <text class="deleteBut" bindtap="onDeleteAll">全部删除</text>
+        </view>
+      </view>
+      <wxs module="search">
+        var getFirst5=function(items){ return items.slice(0,5); } 
+        var getAfter5=function(items){ return items.slice(5); }
+        module.exports.getFirst5=getFirst5; module.exports.getAfter5=getAfter5;
+      </wxs>
+      <view class="list {{arrowUp?'show':'hide'}}">
+        <!-- 由于wx:for下无法横向排列，增加一层view -->
+        <view
+          wx:for="{{search.getFirst5(historySearch)}}"
+          wx:for-item="website"
+          wx:for-index="index"
+          wx:key="title"
+        >
+          <van-button type="default" round size="small" custom-class="websites"
+            >{{website+(isChooseDelete?' × ':'')}}</van-button
+          >
+        </view>
+        <view
+          wx:for="{{search.getAfter5(historySearch)}}"
+          wx:for-item="website"
+          wx:for-index="index"
+          wx:key="title"
+          style="{{!arrowUp?'display:none':''}}"
+        >
+          <van-button
+            type="default"
+            round
+            size="small"
+            custom-class="websites {{isChooseDelete?'tag-choosedelete':''}}"
+            >{{website+(isChooseDelete?' × ':'')}}</van-button
+          >
+        </view>
+      </view>
+      <van-icon
+        wx:if="{{!arrowUp&&historySearch.length>5}}"
+        style="position: absolute; bottom: 20rpx; right: 40rpx"
+        name="arrow-down"
+        bindtap="onClickArrowDown"
+        custom-style="font-size:40rpx;"
+      />
+      <van-icon
+        wx:if="{{arrowUp&&historySearch.length>5}}"
+        name="arrow-up"
+        bindtap="onClickArrowUp"
+        style="position: absolute; bottom: 20rpx; right: 40rpx"
+        custom-style="font-size:40rpx;"
+      />
+    </view>
+    <view class="box2">
+      <view class="title">
+        <i
+          class="iconfont icon-hot"
+          style="font-size: 40rpx; color: #ff2349"
+        ></i>
+        <view class="history-title" style="margin-left: 10rpx">关注热点</view>
+      </view>
+      <view class="hot-list">
+        <!-- 由于wx:for下无法横向排列，增加一层view -->
+        <view
+          wx:for="{{focusCenter}}"
+          wx:for-item="item"
+          wx:for-index="index"
+          wx:key="title"
+          class="focus-hot-item"
+          bindtap="onClickHosItem"
+          data-index="{{index}}"
+        >
+          {{item}}
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

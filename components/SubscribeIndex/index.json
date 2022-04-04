@@ -1,0 +1,13 @@
+{
+  "component": true,
+  "usingComponents": {
+    "van-index-bar": "@vant/weapp/index-bar/index",
+    "van-index-anchor": "@vant/weapp/index-anchor/index",
+    "van-cell": "@vant/weapp/cell/index",
+    "van-cell-group": "@vant/weapp/cell-group/index",
+    "search": "/components/Search/index",
+    "i-index": "./index/index",
+    "i-index-item": "./index-item/index",
+    "van-button": "@vant/weapp/button/index"
+  }
+}

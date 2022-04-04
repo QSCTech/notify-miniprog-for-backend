@@ -1,0 +1,26 @@
+<van-button type="primary" value="{{ date }}" bind:click="onDisplay">
+  主要按钮
+</van-button>
+
+<van-calendar
+  show="{{ show }}"
+  show-confirm="{{ false }}"
+  color="#00a5e3"
+  bind:close="onClose"
+  bind:confirm="onConfirm"
+  formatter="{{ formatter }}"
+>
+  <view slot="footer">
+    <van-button
+      id="cancel"
+      round
+      customClass="cancel_button"
+      color="#BFBFBF"
+      type="info"
+      >取消</van-button
+    >
+    <van-button id="confirm" round customClass="confirm_button" type="info"
+      >确认</van-button
+    >
+  </view>
+</van-calendar>

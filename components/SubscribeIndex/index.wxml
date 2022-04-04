@@ -1,0 +1,59 @@
+<!--components/SubscribeIndex/SubscribeIndex.wxml-->
+<view class="background">
+  <!-- <view wx:if="{{isShowSearch}}" class="search-component">
+    <search
+      componentType="2"
+      bind:clickfilter="onClickFilter"
+      isChoiceFilter="{{choiceFilter}}"
+      id="search"
+      bind:search2="search"
+    ></search>
+  </view> -->
+  <i-index height="{{height}}px" topHeight="{{topHeight}}">
+    <view
+      wx:for="{{showedWebsites}}"
+      wx:for-item="letter"
+      wx:for-index="letterNum"
+      wx:key="index"
+    >
+      <view>
+        <i-index-item name="{{letter.index}}">
+          <view wx:for="{{letter.items}}" wx:for-index="itemNum" wx:key="title">
+            <view wx:if="{{!item.isChosen}}">
+              <van-cell
+                custom-class="cell"
+                border="{{false}}"
+                title="{{item.title}}"
+                title-style="font-weight:bold;font-size:30rpx;"
+                label="{{item.label}}"
+                data-outerid="{{letterNum}}"
+                data-innerid="{{itemNum}}"
+                bind:click="choose"
+              />
+            </view>
+            <view wx:else>
+              <van-cell
+                custom-class="cellChosen"
+                title-class="titleChosen"
+                title-style="font-weight:bold;font-size:30rpx;"
+                label-class="labelChosen"
+                title="{{item.title}}"
+                label="{{item.label}}"
+                border="{{false}}"
+                data-outerid="{{letterNum}}"
+                data-innerid="{{itemNum}}"
+                bind:click="unChoose"
+              >
+                <view
+                  slot="right-icon"
+                  class="iconfont icon-confirm chooseIcon"
+                ></view>
+              </van-cell>
+            </view>
+          </view>
+        </i-index-item>
+      </view>
+    </view>
+    <view style="height: 120rpx"></view>
+  </i-index>
+</view>

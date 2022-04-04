@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "title-bar": "../../components/TitleBar/index",
+    "van-checkbox": "@vant/weapp/checkbox/index",
+    "van-checkbox-group": "@vant/weapp/checkbox-group/index"
+  }
+}

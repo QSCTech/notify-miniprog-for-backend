@@ -1,0 +1,41 @@
+<!--pages/manageSubscribe/index.wxml-->
+<view style="background-image: url('/images/subscribe.png')">
+  <TitleBar title="订阅管理" id="titleBar" />
+  <view class="header" id="header">
+    <search
+      componentType="2"
+      bind:clickfilter="onClickFilter"
+      isChoiceFilter="{{choiceFilter}}"
+      id="search"
+      bind:search2="search"
+    ></search>
+  </view>
+  <view style="height: 16rpx"></view>
+</view>
+<view class="scroll">
+  <SubscribeIndex
+    id="SubscribeIndex"
+    bindtap="updateData"
+    height="{{scrollViewHeight}}"
+    topHeight="{{topHeight}}"
+    websites="{{websites}}"
+  />
+</view>
+<view class="footer" id="footer">
+  <van-button
+    round
+    custom-class="confirm"
+    color="rgba(0, 165, 227, 1)"
+    bind:click="addSubscribe"
+    wx:if="{{confirmBut}}"
+    >保存/<text class="nowNum">已选{{num}}</text></van-button
+  >
+  <van-button
+    round
+    custom-class="confirm"
+    color="#777777"
+    bind:click="addSubscribe"
+    wx:else
+    >保存</van-button
+  >
+</view>

@@ -1,0 +1,32 @@
+<!--components/TitleBar/index.wxml-->
+<view
+  style="width: 100vw; height:{{ statusBarHeight + capsuleHeight }}px; position:relative;"
+>
+  <view style="width: 100vw; height: {{ statusBarHeight }}px;"></view>
+  <view style="width: 100vw; height: {{ capsuleHeight }}px;">
+    <view>
+      <view class="icon-wrap-component flex-wrp">
+        <i
+          wx:if="{{arrow}}"
+          class="iconfont icon-left back-arrow"
+          bindtap="onTapArrow"
+        ></i>
+        <view
+          wx:elif="{{title != 'notify'}}"
+          class="title-placeholder"
+          bindtap="onTapArrow"
+        >
+        </view>
+        <i
+          wx:if="{{title == 'notify'}}"
+          class="icon-notify-title iconfont icon-notify"
+          bindtap="onTapArrow"
+        ></i>
+        <text wx:else class="icon-title {{titleStyle}}" bindtap="onTapArrow"
+          >{{title}}</text
+        >
+        <slot></slot>
+      </view>
+    </view>
+  </view>
+</view>

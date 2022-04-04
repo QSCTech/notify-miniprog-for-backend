@@ -1,0 +1,69 @@
+<!--index.wxml-->
+<view style="background-image: url('/images/notifyandinfobase.png')">
+  <title-bar arrow="{{false}}" title="" titleStyle="" id="titleBar"></title-bar>
+  <view style="width: 92%; margin: 10rpx auto"
+    ><search bind:wrap="onClickWrap" componentType="1" disabled></search
+  ></view>
+  <view style="height: 10rpx"></view>
+</view>
+<view class="scroll" style="height: {{scrollViewHeight}}px;">
+  <view class="box">
+    <view
+      style=" display: flex;flex-direction: row;margin-bottom: 20rpx;justify-content: space-between; "
+    >
+      <view class="title">我的订阅</view>
+      <view
+        class="iconfont icon-settings settings"
+        bindtap="toSubscribe"
+      ></view>
+    </view>
+    <view
+      class="foldList"
+      style="{{folded ? 'max-height:140rpx' : 'max-height:700rpx'}}"
+    >
+      <!-- 由于wx:for下无法横向排列，增加一层view -->
+      <view
+        wx:for="{{websites}}"
+        wx:for-item="website"
+        wx:for-index="index"
+        wx:key="title"
+      >
+        <van-button type="default" round size="small" custom-class="websites"
+          >{{website.title}}</van-button
+        >
+      </view>
+    </view>
+    <view class="foldingButton" bindtap="toggleFoldList">
+      <i
+        wx:if="{{folded}}"
+        class="iconfont icon-down"
+        style="color: #c4c4c4; font-size: 24rpx"
+      ></i>
+      <i
+        wx:else
+        class="iconfont icon-up"
+        style="color: #c4c4c4; font-size: 24rpx"
+      ></i>
+    </view>
+  </view>
+  <view class="box" style="padding-bottom:40rpx;">
+    <view class="title">板块整合</view>
+    <view class="foldList">
+      <!-- 由于wx:for下无法横向排列，增加一层view -->
+      <view
+        wx:for="{{types}}"
+        wx:for-item="type"
+        wx:for-index="index"
+        wx:key="name"
+      >
+        <view class="type" data-name="{{type.name}}" bindtap="intoType">
+          <view
+            class="iconfont {{type.img}} typeIcon"
+            style="background-color:{{type.color}};"
+          ></view>
+          <view class="typeName">{{type.name}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

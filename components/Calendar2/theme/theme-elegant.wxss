@@ -1,0 +1,58 @@
+.elegant_color,
+.elegant_weekend-color,
+.elegant_handle-color,
+.elegant_week-color {
+  color: #333;
+}
+
+.elegant_today {
+  color: red;
+  background-color: #e1e7f5;
+}
+
+.elegant_choosed {
+  color: #ffffff;
+  background-color: #00a5e3;
+}
+
+.elegant_date-disable {
+  color: #c7c7c7 !important;
+}
+
+.elegant_choosed.elegant_date-disable {
+  color: #999 !important;
+  background-color: #ebebeb !important;
+}
+
+.elegant_prev-month-date,
+.elegant_next-month-date {
+  color: #c7c7c7 !important;
+}
+
+.elegant_normal-date {
+  color: black;
+}
+
+.elegant_todo-circle {
+  border-color: #161035;
+}
+
+.elegant_todo-dot {
+  background-color: #161035;
+}
+
+.elegant_date-desc {
+  color: #c2c2c2;
+}
+
+.elegant_date-desc-lunar {
+  color: #161035;
+}
+
+.elegant_date-desc-disable {
+  color: #e2e2e2;
+}
+
+.elegant_festival {
+  color: #c2c2c2;
+}

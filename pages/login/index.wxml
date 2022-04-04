@@ -1,0 +1,81 @@
+<!--pages/login/index.wxml-->
+<view
+  class="container"
+  style="background-image: url('/images/loginBackground.jpg')"
+>
+  <view class="titleContainer">
+    <i class="iconfont icon-notify titleIcon"></i>
+  </view>
+  <view class="formContainer">
+    <form class="loginForm" catchsubmit="formSubmit">
+      <view
+        class="inputCaption"
+        style="font-size:{{inputCaption[0].captionFontSize}}rpx; margin-bottom:{{inputCaption[0].marginTop}}rpx;font-weight:bold;"
+        >学号</view
+      >
+      <input
+        name="ID"
+        class="inputField"
+        type="number"
+        maxlength="20"
+        adjust-position
+        data-tid="0"
+        bindfocus="inputFocus"
+        bindblur="inputBlur"
+        style="border-bottom:{{inputCaption[0].borderWidth}}rpx solid white"
+      />
+      <view
+        class="inputCaption"
+        style="font-size:{{inputCaption[1].captionFontSize}}rpx; margin-bottom:{{inputCaption[1].marginTop}}rpx;font-weight:bold;"
+        >密码</view
+      >
+      <input
+        name="passwd"
+        class="inputField"
+        type="text"
+        maxlength="32"
+        adjust-position
+        password
+        data-tid="1"
+        bindfocus="inputFocus"
+        bindblur="inputBlur"
+        style="border-bottom:{{inputCaption[1].borderWidth}}rpx solid white"
+      />
+      <view wx:if="{{!isQSCer}}" class="backend-login" bindtap="handleQSCer">求是潮后台登录</view>
+      <view
+        wx:if="{{isQSCer}}"
+        class="inputCaption"
+        style="font-size:{{inputCaption[1].captionFontSize}}rpx; margin-bottom:{{inputCaption[1].marginTop}}rpx;font-weight:bold;"
+        >求是潮后台密码</view
+      >
+      <input
+        wx:if="{{isQSCer}}"
+        name="bbsPassword"
+        class="inputField"
+        type="text"
+        maxlength="32"
+        adjust-position
+        password
+        data-tid="1"
+        bindfocus="inputFocus"
+        bindblur="inputBlur"
+        style="border-bottom:{{inputCaption[1].borderWidth}}rpx solid white"
+      />
+      <view wx:if="{{isQSCer}}" class="backend-login" bindtap="handleQSCer">普通用户登录</view>
+      <van-checkbox
+        value="{{ checkboxChecked }}"
+        name="agreement"
+        checked-color="rgba(0,0,0,0)"
+        bind:change="onCheckboxChange"
+        icon-size="24rpx"
+        custom-class="checkboxField"
+        label-class="checkboxText"
+        >同意<text style="text-decoration: underline" catchtap="viewContract"
+          >《服务协议》《隐私条款》</text
+        ></van-checkbox
+      >
+      <button class="buttonField" formType="submit">登录</button>
+    </form>
+  </view>
+  <view class="errorLink">无法登录？立即反馈</view>
+</view>

@@ -1,0 +1,79 @@
+<!--components/Search/index.wxml-->
+<!-- type 0 is the index page, which used to nagativor to search page -->
+<view wx:if="{{componentType===0}}">
+  <view class="custom-class0">
+    <view class="input-wrap" bindtap="goToSearch">
+      <view style="position: relative;float:right;right:20rpx;">
+        <i
+        class="iconfont icon-search"
+        style="color:#C9C9C9;font-size:36rpx;line-height:30px;"
+      ></i>
+    </view>
+    </view>
+    <i
+        class="iconfont icon-filter"
+        style="color:{{isChoiceFilter?'#00A5E3':'white'}};font-size:36rpx;margin-left:30rpx; line-height:30px;"
+        color="{{isChoiceFilter?'#00A5E3':'gray'}}"
+        bindtap="onclickFilter"
+      ></i>
+  </view>
+</view>
+
+<!-- type 1 is used in search page,which contains X icon and search icon -->
+<view wx:elif="{{componentType===1}}">
+
+  <view class="custom-class1" bindtap="onTypeWrap">
+    <input class="input-wrap1" disabled="{{disabled}}" bindinput="handleType1Change" 
+    >
+    <i
+        class="iconfont icon-search"
+        style="color:#C9C9C9;font-size:40rpx;position: relative;float:right; top:-56rpx;left:50rpx;"
+        bindtap="onType1Search"
+      ></i>
+    </input>
+   
+  </view>
+</view>
+
+<!-- type 2 is used in choose subscribe page, which is used for input search string -->
+<view wx:elif="{{componentType===2}}">
+  <view class="custom-class1">
+    <input class="input-wrap2" bindinput="handleType2Change" value="{{type2Value}}" placeholder-class="place-holder-style">
+    <i
+        class="iconfont icon-search"
+        style="color:#C9C9C9;font-size:40rpx;position: relative;float:right; top:-58rpx;left:60rpx;"
+        bindtap="onType2Search"
+      ></i>
+  
+    </input>
+    <view class="filterBox">
+      <!-- <i
+        class="iconfont icon-filter"
+        style="color:{{isChoiceFilter?'#00A5E3':'gray'}};font-size:36rpx;margin-left:30rpx; line-height:30px;"
+        color="{{isChoiceFilter?'#00A5E3':'gray'}}"
+        bindtap="onclickFilter"
+      ></i> -->
+
+      <!-- <view wx:if="{{isChoiceFilter}}">
+        <van-tag type="primary" size="large" color="#BBBBBB" text-color="#666666" bindtap="onclickFilter">全部</van-tag>
+        <van-tag type="primary" size="large" color="#00A5E3">已订</van-tag>
+      </view>
+      <view wx:else>
+        <van-tag type="primary" size="large" color="#00A5E3">全部</van-tag>
+        <van-tag type="primary" size="large" color="#BBBBBB" text-color="#666666" bindtap="onclickFilter">已订</van-tag>
+      </view> -->
+      <!-- <view class="filterBox-item" style=" background-color: {{isChoiceFilter?'#ececec':'#ffffff'}}; color:{{isChoiceFilter?'#C9C9C9':'rgba(0, 165, 227, 1)'}}" bindtap="onclickFilter">
+      全部
+      </view>
+      <view class="filterBox-item" style=" background-color: {{isChoiceFilter?'#ffffff':'#ececec'}}; color:{{isChoiceFilter?'rgba(0, 165, 227, 1)':'#C9C9C9'}}" bindtap="onclickFilter">
+      已订 -->
+      <view class="filter-slider" style="{{isChoiceFilter == 0 ? 'left: 6%' : 'left: 50%'}}"></view>
+      <view class="filterBox-item" style="left: 6%; color: {{isChoiceFilter == 1 ? '#c9c9c9' : '#00A5E3'}}" data-sid="0" bindtap="onclickFilter">
+      全部
+      </view>
+      <view class="filterBox-item" style="right: 6%; color: {{isChoiceFilter == 1 ? '#00A5E3' : '#c9c9c9'}}" data-sid="1" bindtap="onclickFilter">
+      已订
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,30 @@
+<!--pages/personalSettings/index.wxml-->
+<view style="background-image: url('/images/typeDetail.png')">
+  <TitleBar title="设置" id="titleBar" />
+  <view style="height:10rpx;"></view>
+</view>
+<view style="height:90vh;  overflow: hidden;  background-color: rgba(232, 236, 237, 1);">
+  <view class="header" style="position:relative">
+<view id="up">
+  <van-cell-group >
+    <van-cell center title="DDL提前提醒时间" is-link />
+    <van-cell center title="消息推送时段" is-link />
+    <van-cell center title="通知页自动删除" is-link />
+    <van-cell center title="订阅网站管理" is-link link-type="navigateTo" url="/pages/manageSubscribe/index" />
+  </van-cell-group>
+</view>
+<view id="down">
+  <van-cell-group>
+    <van-cell title="关于" is-link  />
+    <van-cell title="反馈与建议" is-link custom-class="feedback"/>
+  </van-cell-group>
+</view>
+</view>
+
+</view>
+
+<view style="position:fixed;bottom: 0;height:  calc(140rpx + env(safe-area-inset-bottom));width:100%;background-color:#ffffff;">
+<view style="margin:20rpx 40rpx 10rpx 40rpx;height:108rpx;border-radius:80rpx;background:rgba(255, 35, 73, 1);display:flex;  align-items: center;justify-content: center;color:#ffffff;font-size:32rpx;">
+  退出登录
+</view>
+</view>

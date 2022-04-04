@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "title-bar": "../../../components/TitleBar/index",
+    "search": "../../../components/Search/index",
+    "van-icon": "@vant/weapp/icon/index",
+    "van-button": "@vant/weapp/button/index"
+  }
+}

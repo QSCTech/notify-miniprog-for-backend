@@ -1,0 +1,56 @@
+<!--components/Notice/index.wxml-->
+<view class="noticeContainer">
+  <!-- <view class="noticeGroundOverlay"> -->
+  <van-swipe-cell right-width="{{rightCellWidth}}" class="noticeBackground">
+    <view slot="right" class="noticeSwipeCellLeft">
+      <view
+        wx:if="{{stickTop}}"
+        class="cancelTopBtn noticeBtn"
+        bindtap="cancelTop"
+      >
+        <i class="iconfont icon-bottom noticeBtnIcon"></i>
+        <view class="noticeBtnCaption">取消置顶</view>
+      </view>
+      <view wx:else class="stickTopBtn noticeBtn" bindtap="stickToTop">
+        <i class="iconfont icon-top noticeBtnIcon"></i>
+        <view class="noticeBtnCaption">置顶通知</view>
+      </view>
+      <view wx:if="{{redDot}}" class="readBtn noticeBtn" bindtap="markAsRead">
+        <i class="iconfont icon-dot noticeBtnIcon"></i>
+        <view class="noticeBtnCaption">标为已读</view>
+      </view>
+      <view wx:else class="cancelReadBtn noticeBtn" bindtap="markAsNotRead">
+        <i class="iconfont icon-dot noticeBtnIcon"></i>
+        <view class="noticeBtnCaption">标为未读</view>
+      </view>
+      <view class="deleteBtn noticeBtn" bindtap="deleteNotice">
+        <i class="iconfont icon-cross noticeBtnIcon"></i>
+        <view class="noticeBtnCaption">删除通知</view>
+      </view>
+    </view>
+    <view class="noticeGround" bindtap="navigateToDetails">
+      <view wx:if="{{stickTop}}" class="noticeStick"></view>
+      <i class="iconfont icon-top noticeStickicon"></i>
+      <view class="noticeLabels">
+        <view wx:if="{{attachment}}" class="noticeAttachment">
+          <i class="iconfont icon-attachment noticeLabelIcon"></i>
+        </view>
+        <view wx:else class="noticeLabelPlaceHolder"></view>
+        <view wx:if="{{star}}" class="noticeStar">
+          <i class="iconfont icon-star noticeLabelIcon"></i>
+        </view>
+        <view wx:else class="noticeLabelPlaceHolder"></view>
+      </view>
+      <view class="noticeInfoContainer">
+        <view class="noticeTitle"> {{title}} </view>
+        <view wx:if="{{important}}" class="noticeCategory noticeSerious">
+          重要通知
+        </view>
+        <view wx:else class="noticeCategory"> {{category}} </view>
+        <view class="noticeSource"> {{source}} </view>
+      </view>
+    </view>
+  </van-swipe-cell>
+  <!-- </view> -->
+  <view wx:if="{{redDot}}" class="noticeReddot"></view>
+</view>

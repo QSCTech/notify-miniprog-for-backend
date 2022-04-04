@@ -1,0 +1,39 @@
+<!--pages/subscribe/subscribe.wxml-->
+<view style="background-image: url('/images/chooseSub.png')">
+  <TitleBar title="" arrow="{{false}}" id="titleBar" />
+  <view class="header" id="header">
+    <view class="headerText">选择您想订阅的网站</view>
+    <search componentType="1" id="search" bind:search1="search"></search>
+  </view>
+  <view style="height: 24rpx"> </view>
+</view>
+
+<view class="scroll" style="height:{{scrollViewHeight}}px">
+  <SubscribeIndex
+    id="SubscribeIndex"
+    bindtap="updateData"
+    height="{{scrollViewHeight}}"
+    topHeight="{{topHeight-30}}"
+    websites="{{websites}}"
+  />
+  <!-- 不知为何在通过索引条跳转时产生了30px的偏差 -->
+</view>
+<view class="footer" id="footer">
+  <van-button round custom-class="cancel" color="#bbbbbb">取消</van-button>
+  <van-button
+    round
+    custom-class="confirm"
+    color="rgba(0, 165, 227, 1)"
+    bind:click="addSubscribe"
+    wx:if="{{confirmBut}}"
+    >确定/<text class="nowNum">已选{{num}}</text></van-button
+  >
+  <van-button
+    round
+    custom-class="confirm"
+    color="#777777"
+    bind:click="addSubscribe"
+    wx:else
+    >确定</van-button
+  >
+</view>

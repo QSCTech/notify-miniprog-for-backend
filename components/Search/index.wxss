@@ -1,0 +1,124 @@
+/* components/Search/index.wxss */
+
+.custom-class {
+  width: 100% !important;
+  height: 30px !important;
+  margin: 0 auto;
+}
+.field-class {
+  border-radius: 10rpx !important;
+  border: 4rpx black !important;
+}
+
+.custom-class0 {
+  width: 100% !important;
+  height: 30px !important;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.custom-class1 {
+  width: 100% !important;
+  height: 35px !important;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.input-wrap {
+  background-color: #ececec;
+  width: 86%;
+  height: 100% !important;
+  border-radius: 20rpx;
+  position: relative;
+}
+
+.input-wrap1 {
+  background-color: #ececec;
+  width: 100%;
+  min-height: 0;
+  box-sizing: border-box;
+  height: 70rpx;
+  border-radius: 20rpx;
+  position: relative;
+  padding-left: 30rpx;
+  padding-right: 80rpx;
+  color: #777777;
+}
+
+.input-wrap2 {
+  background-color: #ececec;
+  width: 58%;
+  height: 100%;
+  border-radius: 16rpx;
+  position: relative;
+  padding-left: 30rpx;
+  padding-right: 80rpx;
+  color: #777777;
+}
+
+/* .filterBox {
+  margin-left: 10rpx;
+  display: flex;
+  height: 100%;
+  flex: 1;
+
+  position: relative;
+  flex-direction: row;
+  padding: 2rpx 8rpx;
+  border-radius: 20rpx;
+  background-color: #ececec;
+  justify-content: center;
+  align-items: center;
+}
+.filterBox-item {
+  flex: 1;
+  font-size: 28rpx;
+  font-weight: bold;
+  height: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10rpx;
+} */
+.filterBox {
+  margin-left: 10rpx;
+  display: flex;
+  height: 100%;
+  flex: 1;
+
+  position: relative;
+  flex-direction: row;
+  /* padding: 2rpx 8rpx; */
+  border-radius: 20rpx;
+  background-color: #ececec;
+  justify-content: space-around;
+  align-items: center;
+}
+.filterBox-item {
+  width: 44%;
+  flex: 1;
+  font-size: 28rpx;
+  font-weight: bold;
+  height: 80%;
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10rpx;
+  /* margin: 0 4%; */
+  font-size: 26rpx;
+  z-index: 10;
+  transition: ease 200ms;
+  /* background-color: blueviolet; */
+}
+.filter-slider {
+  width: 44%;
+  height: 76%;
+  position: absolute;
+  border-radius: 18rpx;
+  background-color: white;
+  z-index: 9;
+  transition: ease 200ms;
+}
