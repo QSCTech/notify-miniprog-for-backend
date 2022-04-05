@@ -56,7 +56,7 @@ Page({
         color: "#FF9A18"
       }
     ],
-    hasUserInfo: false,
+    hazserInfo: false,
     canIUse: wx.canIUse("button.open-type.getUserInfo"),
     canIUseGetUserProfile: false,
     canIUseOpenData: wx.canIUse("open-data.type.userAvatarUrl") &&
@@ -96,14 +96,15 @@ Page({
             data.forEach(function (value, index) {
               let tmp = {
                 id: index,
-                pid: value.notify_id,
+                pid: value.notice_id,
                 title: value.title,
-                category: value.catagory,
+                category: value.category,
                 source: value.from_faculty,
                 star: value.is_collect,
-                redDot: value.is_read,
+                redDot: !value.is_read,
                 attachment: value.has_appendix,
               };
+              console.log(value.category);
               listSample.push(tmp);
             })
           }
@@ -113,12 +114,12 @@ Page({
             data.forEach(function (value, index) {
               let tmp = {
                 id: index,
-                pid: value.notify_id,
+                pid: value.notice_id,
                 title: value.title,
-                category: value.catagory,
+                category: value.category,
                 source: value.from_faculty,
                 star: value.is_collect,
-                redDot: value.is_read,
+                redDot: !value.is_read,
                 attachment: value.has_appendix,
               };
               topListSample.push(tmp);
@@ -215,46 +216,36 @@ Page({
             data.forEach(function (value, index) {
               let tmp = {
                 id: index,
-                pid: value.notify_id,
+                pid: value.notice_id,
                 title: value.title,
-                category: value.catagory,
+                category: value.category,
                 source: value.from_faculty,
                 star: value.is_collect,
-                redDot: value.is_read,
+                redDot: !value.is_read,
+                stickTop: false,
                 attachment: value.has_appendix,
               };
-              switch (nowChooseType) {
-                case 1:
-                  listSample.push(tmp);
-                  break;
-                case 2:
-                  notReadListSample.push(tmp);
-                  break;
-                case 3:
-                  appendixListSample.push(tmp);
-                  break;
-                case 4:
-                  collectedListSample.push(tmp);
-                  break;
-              }
+              listSample.push(tmp);
             })
-            if (nowChooseType == 1) {
-              data = res.data.top_notices;
-              data.forEach(function (value, index) {
-                let tmp = {
-                  iid: index,
-                  pid: value.notify_id,
-                  title: value.title,
-                  category: value.catagory,
-                  source: value.from_faculty,
-                  star: value.is_collect,
-                  redDot: value.is_read,
-                  attachment: value.has_appendix,
-                };
-                topListSample.push(tmp);
-              })
-            }
           }
+          data = res.data.top_notices;
+          if (data){
+            data.forEach(function (value, index) {
+              let tmp = {
+                iid: index,
+                pid: value.notice_id,
+                title: value.title,
+                category: value.category,
+                source: value.from_faculty,
+                star: value.is_collect,
+                redDot: !value.is_read,
+                stickTop: true,
+                attachment: value.has_appendix,
+              };
+              topListSample.push(tmp);
+            })
+          }
+          
           
           resolve();
         },
@@ -271,13 +262,9 @@ Page({
         topFoldedNoticeArray: topListSample.slice(2, topListSample.length),
         foldingTopArray: true,
         noticeArray: listSample,
-        appendixNoticeArray: appendixListSample,
-        notReadNoticeArray: notReadListSample,
-        collectedNoticeArray: collectedListSample,
         refreshOn: false,
         finale: false
       });
-      console.log(that.data.appendixNoticeArray.length + " " + appendixListSample.length);
     }, function(error) {})
   },
 
@@ -285,31 +272,11 @@ Page({
     const that = this;
     const nowChooseType = this.data.nowChooseType;
     var listSample = that.data.noticeArray;
-    let notReadListSample = that.data.notReadNoticeArray;
-    let collectedListSample = that.data.collectedNoticeArray;
-    let appendixListSample = that.data.appendixNoticeArray;
     if (this.data.finale) return;
     this.setData({
       loadingMore: true
     });
 
-    var list;
-    switch (nowChooseType) {
-      case 1:
-        list = listSample;
-        break;
-      case 2:
-        list = notReadListSample;
-        break;
-      case 3:
-        list = appendixListSample;
-        break;
-      case 4:
-        list = collectedListSample;
-        break;
-    }
-    console.log(listSample === list);
-    
     const http = new HTTP();
     const request = new Promise(function (resolve) {
       http._request('notice/get/entry', function (res) {
@@ -318,15 +285,16 @@ Page({
             data.forEach(function (value, index) {
               let tmp = {
                 id: index,
-                pid: value.notify_id,
+                pid: value.notice_id,
                 title: value.title,
-                category: value.catagory,
+                category: value.category,
                 source: value.from_faculty,
                 star: value.is_collect,
-                redDot: value.is_read,
+                redDot: !value.is_read,
+                stickTop: false,
                 attachment: value.has_appendix,
               };
-              list.push(tmp);
+              listSample.push(tmp);
             })
           }
           resolve(res.data.total);
@@ -334,19 +302,15 @@ Page({
         function () {}, {
           choice: nowChooseType - 1,
           page_size: that.data.pageSize,
-          page_num: list.length/that.data.pageSize + 1
+          page_num: listSample.length/that.data.pageSize + 1
         });
     })
     request.then(function (count) {
       that.setData({
         loadingMore: false,
         noticeArray: listSample,
-        notReadNoticeArray: notReadListSample,
-        appendixNoticeArray: appendixListSample,
-        collectedNoticeArray: collectedListSample
       });
-      console.log(that.data.noticeArray.length + " " + listSample.length);
-      if (list.length >= count) {
+      if (listSample.length >= count) {
         that.setData({
           finale: true
         });

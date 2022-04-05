@@ -34,7 +34,7 @@
 </view> -->
 <scroll-view scroll-y class="noticeList" style="height:{{canUseHeight}}px" enable-back-to-top refresher-enabled bindrefresherrefresh="refreshList" refresher-triggered="{{refreshOn}}" scroll-top="{{scrollTop}}" bindscrolltolower="getMoreNotice" lower-threshold="{{100}}">
 
-  <view wx:if="{{nowChooseType == 1}}">
+  <view>
     <Notice
       wx:for="{{topNoticeArray}}"
       wx:key="id"
@@ -79,54 +79,6 @@
     </view>
     <Notice
       wx:for="{{noticeArray}}"
-      wx:key="id"
-      data-nid="{{item.id}}"
-      pid="{{item.pid}}"
-      title="{{item.title}}"
-      category="{{item.category}}"
-      source="{{item.source}}"
-      attachment="{{item.attachment}}"
-      star="{{item.star}}"
-      stickTop="{{item.stickTop}}"
-      redDot="{{item.redDot}}"
-      rightCellWidth="{{rightCellWidth}}"
-    />
-  </view>
-  <view wx:if="{{nowChooseType == 2}}">
-    <Notice
-      wx:for="{{notReadNoticeArray}}"
-      wx:key="id"
-      data-nid="{{item.id}}"
-      pid="{{item.pid}}"
-      title="{{item.title}}"
-      category="{{item.category}}"
-      source="{{item.source}}"
-      attachment="{{item.attachment}}"
-      star="{{item.star}}"
-      stickTop="{{item.stickTop}}"
-      redDot="{{item.redDot}}"
-      rightCellWidth="{{rightCellWidth}}"
-    />
-  </view>
-  <view wx:if="{{nowChooseType == 3}}">
-    <Notice
-      wx:for="{{appendixNoticeArray}}"
-      wx:key="id"
-      data-nid="{{item.id}}"
-      pid="{{item.pid}}"
-      title="{{item.title}}"
-      category="{{item.category}}"
-      source="{{item.source}}"
-      attachment="{{item.attachment}}"
-      star="{{item.star}}"
-      stickTop="{{item.stickTop}}"
-      redDot="{{item.redDot}}"
-      rightCellWidth="{{rightCellWidth}}"
-    />
-  </view>
-  <view wx:if="{{nowChooseType == 4}}">
-    <Notice
-      wx:for="{{collectedNoticeArray}}"
       wx:key="id"
       data-nid="{{item.id}}"
       pid="{{item.pid}}"

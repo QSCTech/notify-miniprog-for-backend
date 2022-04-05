@@ -147,7 +147,10 @@ Page({
     ddlYear: null,
     ddlMonth: null,
     ddlDate: null,
-    ddlTime: "09:00"
+    ddlHour: null,
+    ddlMinute: null,
+    ddlTime: "09:00",
+    ddlMsg: null
   },
 
   onclickText: function () {
@@ -199,6 +202,27 @@ Page({
       return;
     }
   },
+
+dateFormat: function(fmt, date) {
+  let ret,
+  opt = {
+      "Y+": date.getFullYear().toString(),        // 年
+      "m+": date.getMonth().toString(),     // 月
+      "d+": date.getDate().toString(),            // 日
+      "H+": date.getHours().toString(),           // 时
+      "M+": date.getMinutes().toString(),         // 分
+      "S+": date.getSeconds().toString()          // 秒
+      // 有其他格式化字符需求可以继续添加，必须转化成字符串
+  };
+  for (let k in opt) {
+      ret = new RegExp("(" + k + ")").exec(fmt);
+      if (ret) {
+          fmt = fmt.replace(ret[1], (ret[1].length == 1) ? (opt[k]) : (opt[k].padStart(ret[1].length, "0")))
+      };
+  };
+  return fmt;
+},
+
   /**
    * 按下确认按钮
    */
@@ -211,6 +235,8 @@ Page({
         console.log(chooseTimes);
         this.setData({
           showTime: false,
+          ddlHour: chooseTimes[1],
+          ddlMinute: chooseTimes[2],
           ddlTime: chooseTimes[1] + ":" + chooseTimes[2]
         });
         return;
@@ -236,11 +262,21 @@ Page({
         });
         return;
       } else {
+        let http = new HTTP();
+        let url = "notice/set/ddl?notice_id=" + this.data.pid;
+        http._request(url, function(res){
+        }, function() {}, {
+          // ddl_time: "2022-01-19 12:30:00",
+          // ddl_time: new Date(this.data.ddlYear, this.data.ddlMonth, this.data.ddlDate, this.data.ddlHour, this.data.ddlMinute),
+          ddl_time: this.dateFormat("YYYY-mm-dd HH:MM:SS", new Date(this.data.ddlYear, this.data.ddlMonth, this.data.ddlDate, this.data.ddlHour, this.data.ddlMinute)),
+          ddl_msg: "这是一条ddl"
+        }, "POST")
         console.log(
           this.data.ddlYear,
           this.data.ddlMonth,
           this.data.ddlDate,
-          this.data.ddlTime
+          this.data.ddlHour,
+          this.data.ddlMinute
         );
       }
     }
@@ -255,7 +291,7 @@ Page({
     const that = this;
     eventChannel.on("acceptDataFromOpenerPage", function (data) {
       const pid = data.pid;
-      http._request('notify/detail', function (res) {
+      http._request('notice/get/detail', function (res) {
         if (res.status === "error") {
           wx.showModal({
             title: "Opps!",
@@ -268,23 +304,34 @@ Page({
             }
           });
         } else {
-          const date = new Date(Math.floor(res.data.notify_time));
+          let data = res.data.detail;
+          if (data.has_ddl) {
+            let msg = data.ddl.ddl_msg;
+            let t = new Date(data.ddl.ddl_time);
+            that.setData({
+              ddlDate: t.getDate(),
+              ddlMonth: t.getMonth() + 1,
+              ddlYear: t.getFullYear(),
+              ddlTime: t.getHours() + ":" + t.getMinutes(),
+              ddlMsg: msg
+            })
+          } 
           that.setData({
-            title: res.data.notify_title,
-            date: `${date.getFullYear()}年${date.getMonth()}月${date.getDate()}日`,
-            visits: res.data.notify_visit_number,
-            category: res.data.notify_type,
-            source: res.data.notify_from,
-            text: res.data.notify_detail,
-            important: res.data.notify_set_top,
-            star: res.data.notify_collect,
-            hasAttachment: res.data.notify_enclosure,
-            attachment: res.data.notify_enclosure_list,
-            origin: res.data.notify_origin
+            pid: pid,
+            title: data.title,
+            // visits: res.data.notify_visit_number,
+            category: data.category,
+            source: data.from_faculty,
+            text: data.content,
+            important: data.is_settop,
+            star: data.is_collect,
+            hasAttachment: data.appendixes.length > 0,
+            attachment: data.appendixes,
+            origin: data.url
           })
         }
       }, function () {}, {
-        notify_id: pid
+        notice_id: pid
       });
     });
     let safeAreaHeight =
