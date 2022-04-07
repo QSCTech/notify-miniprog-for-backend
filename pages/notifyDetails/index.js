@@ -169,6 +169,19 @@ Page({
     }
   },
 
+  onChangeCollect: function () {
+    var http = new HTTP();
+    this.setData({
+      star: !this.data.star
+    });
+    http._request("notice/set/collect", function(res) {
+      console.log(res.msg);
+    }, function () {}, {
+      notice_id: this.data.pid,
+      set_collect: this.data.star
+    })
+  },
+
   /**
    * 展示  or  隐藏日历选择
    */
@@ -203,7 +216,7 @@ Page({
     }
   },
 
-dateFormat: function(fmt, date) {
+  dateFormat: function(fmt, date) {
   let ret,
   opt = {
       "Y+": date.getFullYear().toString(),        // 年
@@ -291,6 +304,10 @@ dateFormat: function(fmt, date) {
     const that = this;
     eventChannel.on("acceptDataFromOpenerPage", function (data) {
       const pid = data.pid;
+      http._request('notice/add_click', function() {}, function() {}, {
+        'faculty_id': 1,
+        'notice_id': pid
+      })
       http._request('notice/get/detail', function (res) {
         if (res.status === "error") {
           wx.showModal({
@@ -329,6 +346,7 @@ dateFormat: function(fmt, date) {
             attachment: data.appendixes,
             origin: data.url
           })
+          console.log(that.data.star);
         }
       }, function () {}, {
         notice_id: pid

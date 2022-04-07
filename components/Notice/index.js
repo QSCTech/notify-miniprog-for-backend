@@ -1,3 +1,5 @@
+import { HTTP } from "../../utils/http";
+
 // components/Notice/index.js
 Component({
   options: {
@@ -69,7 +71,8 @@ Component({
   /**
    * 组件的初始数据
    */
-  data: {},
+  data: {
+  },
 
   /**
    * 组件的方法列表
@@ -86,10 +89,17 @@ Component({
      * @param {object} event
      */
     stickToTop: function (event) {
+      let http = new HTTP();
       console.log(this.data.nid);
       this.setData({
         stickTop: true
       });
+      http._request("notice/set/top", function(res) {
+        console.log(res.msg);
+      }, function () {}, {
+        notice_id: this.data.pid,
+        set_top: this.data.stickTop
+      })
     },
 
     /**
@@ -97,9 +107,16 @@ Component({
      * @param {object} event
      */
     cancelTop: function (event) {
+      let http = new HTTP();
       this.setData({
         stickTop: false
       });
+      http._request("notice/set/top", function(res) {
+        console.log(res.msg);
+      }, function () {}, {
+        notice_id: this.data.pid,
+        set_top: this.data.stickTop
+      })
     },
 
     /**
@@ -107,9 +124,16 @@ Component({
      * @param {object} event
      */
     markAsRead: function (event) {
+      let http = new HTTP();
       this.setData({
         redDot: false
       });
+      http._request("notice/set/read", function(res) {
+        console.log(res.msg);
+      }, function () {}, {
+        notice_id: this.data.pid,
+        set_read: !this.data.redDot
+      })
     },
 
     /**
@@ -117,26 +141,51 @@ Component({
      * @param {object} event
      */
     markAsNotRead: function (event) {
+      let http = new HTTP();
       this.setData({
         redDot: true
       });
+      http._request("notice/set/read", function(res) {
+        console.log(res.msg);
+      }, function () {}, {
+        notice_id: this.data.pid,
+        set_read: !this.data.redDot
+      })
     },
 
     /**
      * Notice 组件删除按钮
      * @param {object} event
      */
-    deleteNotice: function (event) {},
+    deleteNotice: function (event) {
+      let http = new HTTP();
+      http._request("notice/delete-notice", function(res) {
+        console.log(res.msg);
+      }, function() {}, {
+        notice_id: this.data.pid,
+      })
+    },
 
     /**
      * Notice 组件点击跳转
      * @param {object} event
      */
     navigateToDetails: function (event) {
+      this.setData({
+        redDot: false
+      })
+      let http = new HTTP();
+      http._request("notice/set/read", function(res) {
+        console.log(res.msg);
+      }, function() {}, {
+        notice_id: this.data.pid,
+        set_read: true
+      })
       console.log(event);
       let data = {
-        pid: this.data.pid
+        pid: this.data.pid,
       };
+      
       wx.navigateTo({
         url: "/pages/notifyDetails/index",
         success: function (res) {

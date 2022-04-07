@@ -120,6 +120,7 @@ Page({
                 source: value.from_faculty,
                 star: value.is_collect,
                 redDot: !value.is_read,
+                stickTop: true,
                 attachment: value.has_appendix,
               };
               topListSample.push(tmp);

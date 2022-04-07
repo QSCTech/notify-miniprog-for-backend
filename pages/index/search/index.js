@@ -1,3 +1,5 @@
+import { HTTP } from "../../../utils/http";
+
 // pages/index/search/index.js
 Page({
   /**
@@ -15,17 +17,22 @@ Page({
    */
   onLoad: function (options) {
     let tmpCenter = [];
-
-    tmpCenter.push("计算机科学与技术");
-    tmpCenter.push("四六级口语开始报名");
-    tmpCenter.push("四六级口语开始报名");
-    tmpCenter.push("四六级口语开始报名");
-    tmpCenter.push("四六级口语开始报名");
-    tmpCenter.push("四六级口语开始报名");
-    tmpCenter.push("四六级口语开始报名");
-    tmpCenter.push("四六级口语开始报名");
-    tmpCenter.push("四六级口语开始报名");
-    tmpCenter.push("四六级口语开始报名");
+    let http = new HTTP();
+    http._request("notice/get/top10", function(res) {
+      let data = res.data.notices;
+          if (data) {
+            data.forEach(function (value, index) {
+              let tmp = {
+                id: index,
+                pid: value.notice_id,
+                title: value.title,
+                category: value.category,
+                source: value.from_faculty,
+              };
+              tmpCenter.push(tmp);
+          })
+    }
+  }, function() {})
 
     this.setData({ focusCenter: tmpCenter });
     let tmphistorySearch = this.getTheStorage();

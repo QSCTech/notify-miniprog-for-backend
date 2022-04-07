@@ -47,10 +47,15 @@
     bindtap="onChangeDate"
   ></view>
   <view
-    wx:if="star"
+    wx:if="{{star}}"
     class="iconfont icon-star_filled toolBtn starred verticalCentered"
+    bindtap="onChangeCollect"
   ></view>
-  <view wx:else class="iconfont icon-star toolBtn verticalCentered"></view>
+  <view 
+    wx:else 
+    class="iconfont icon-star toolBtn verticalCentered"
+    bindtap="onChangeCollect"
+  ></view>
   <view class="iconfont icon-share toolBtn verticalCentered"></view>
 </view>
 
